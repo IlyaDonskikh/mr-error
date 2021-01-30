@@ -1,14 +1,19 @@
-import { isMainThread } from 'worker_threads';
-import { customI18n as I18n } from './utils/i18n';
-
-export class ErrorsBuilder {
+export class MrError {
+  private localizationPackage?: typeof i18n;
   public localePath: string;
 
   public statusCode: number = 422;
   public errors: { [key: string]: string[] } = {};
 
-  constructor({ localePath }: { localePath: string }) {
+  constructor({
+    localePath,
+    localizationPackage,
+  }: {
+    localePath: string;
+    localizationPackage?: any;
+  }) {
     this.localePath = localePath;
+    this.localizationPackage = localizationPackage;
   }
 
   messages() {
@@ -32,7 +37,7 @@ export class ErrorsBuilder {
     this.errors[name].push(code);
   }
 
-  merge(errorsBuilder: ErrorsBuilder) {
+  merge(errorsBuilder: MrError) {
     const errorsList = errorsBuilder.errors;
 
     Object.keys(errorsList).forEach((key: string) => {
@@ -44,7 +49,15 @@ export class ErrorsBuilder {
 
   private buildLocalePathsBy(key: string): Array<string> {
     return this.errors[key].map((code: string) =>
-      I18n.t(`${this.localePath}.${key}.${code}`),
+      this.localizeLine(`${this.localePath}.${key}.${code}`),
     );
+  }
+
+  private localizeLine(value: string) {
+    if (this.localizationPackage) {
+      return this.localizationPackage.__(value);
+    }
+
+    return value;
   }
 }

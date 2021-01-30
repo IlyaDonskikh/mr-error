@@ -3,21 +3,16 @@
   "version": "0.5.0",
   "description": "Build and handle errors in the way they deserve.",
   "main": "dist/index.js",
-  "types": "dist/typings/index.d.ts",
   "scripts": {
     "test": "test",
     "build": "tsc",
     "build:check": "tsc --noEmit"
   },
   "keywords": [
-    "usecase",
-    "case"
+    "errors"
   ],
   "author": "Ilia Donskikh",
   "license": "ISC",
-  "dependencies": {
-    "i18n": "^0.13.2"
-  },
   "devDependencies": {
     "@types/i18n": "^0.12.0",
     "@types/node": "^14.14.22",
