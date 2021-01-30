@@ -1,0 +1,16 @@
+{
+  "name": "mr-error",
+  "version": "0.5.0",
+  "description": "Build and handle errors in the way they deserve.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "usecase",
+    "case"
+  ],
+  "author": "Ilia Donskikh",
+  "license": "ISC"
+}
