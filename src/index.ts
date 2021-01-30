@@ -1,19 +1,12 @@
 export class MrError {
-  private localizationPackage?: typeof i18n;
+  protected localizationPackage?: typeof i18n;
   public localePath: string;
 
   public statusCode: number = 422;
   public errors: { [key: string]: string[] } = {};
 
-  constructor({
-    localePath,
-    localizationPackage,
-  }: {
-    localePath: string;
-    localizationPackage?: any;
-  }) {
+  constructor({ localePath }: { localePath: string }) {
     this.localePath = localePath;
-    this.localizationPackage = localizationPackage;
   }
 
   messages() {
