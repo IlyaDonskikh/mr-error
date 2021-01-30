@@ -5,7 +5,7 @@ export class MrError {
   public statusCode: number = 422;
   public errors: { [key: string]: string[] } = {};
 
-  constructor({ localePath }: { localePath: string }) {
+  constructor({ localePath }: { localePath: string } = { localePath: 'base' }) {
     this.localePath = localePath;
   }
 
