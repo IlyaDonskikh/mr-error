@@ -1,6 +1,6 @@
 {
   "name": "mr-error",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Build and handle errors in the way they deserve.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,10 +11,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "tsc",
+    "build": "del dist && tsc",
     "build:check": "tsc --noEmit",
     "dot-only-hunter": "dot-only-hunter tests",
-    "deploy": "del dist && npm run build && npm publish"
+    "deploy": "npm run test:coverage && npm run build && npm publish"
   },
   "keywords": [
     "errors"
