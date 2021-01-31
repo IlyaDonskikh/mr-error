@@ -4,6 +4,9 @@
   "description": "Build and handle errors in the way they deserve.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -11,7 +14,7 @@
     "build": "tsc",
     "build:check": "tsc --noEmit",
     "dot-only-hunter": "dot-only-hunter tests",
-    "deploy": "npm run build && npm publish"
+    "deploy": "del dist && npm run build && npm publish"
   },
   "keywords": [
     "errors"
@@ -22,6 +25,7 @@
     "@types/i18n": "^0.12.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
+    "del-cli": "^3.0.1",
     "dot-only-hunter": "^1.0.3",
     "husky": "^5.0.8",
     "jest": "^26.6.3",
