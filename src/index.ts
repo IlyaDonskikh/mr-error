@@ -4,6 +4,9 @@ export class MrError {
 
   public statusCode: number = 422;
   public errors: { [key: string]: string[] } = {};
+  public replacements: {
+    [key: string]: { [key: string]: i18n.Replacements };
+  } = {};
 
   constructor({ localePath }: { localePath: string } = { localePath: 'base' }) {
     this.localePath = localePath;
@@ -19,7 +22,11 @@ export class MrError {
     return localizedMessages;
   }
 
-  add(name: string, code: string) {
+  add(
+    name: string,
+    code: string,
+    options?: { replacements: i18n.Replacements },
+  ) {
     if (this.errors[name] === undefined) {
       this.errors[name] = [];
     }
@@ -28,6 +35,7 @@ export class MrError {
     }
 
     this.errors[name].push(code);
+    this.replacements[name] = { [code]: options?.replacements || {} };
   }
 
   merge(errorsBuilder: MrError) {
@@ -42,13 +50,17 @@ export class MrError {
 
   private buildLocalePathsBy(key: string): Array<string> {
     return this.errors[key].map((code: string) =>
-      this.localizeLine(`${this.localePath}.${key}.${code}`),
+      this.localizeLine({ key, code }),
     );
   }
 
-  private localizeLine(value: string) {
+  private localizeLine({ key, code }: { key: string; code: string }) {
+    const value = `${this.localePath}.${key}.${code}`;
+
     if (this.localizationPackage) {
-      return this.localizationPackage.__(value);
+      const replacements = this.replacements[key]?.[code];
+
+      return this.localizationPackage.__(value, replacements);
     }
 
     return value;
