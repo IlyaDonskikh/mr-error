@@ -1,6 +1,6 @@
 {
   "name": "mr-error",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Build and handle errors in the way they deserve.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
