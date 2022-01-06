@@ -1,6 +1,6 @@
 {
   "name": "mr-error",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Build and handle errors in the way they deserve.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,5 +34,13 @@
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaDonskikh/mr-error.git"
+  },
+  "bugs": {
+    "url": "https://github.com/IlyaDonskikh/mr-error/issues"
+  },
+  "homepage": "https://github.com/IlyaDonskikh/mr-error#readme"
 }
